@@ -1,21 +1,38 @@
 import classes from './Welcome.module.css';
+import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { Fragment } from 'react';
+
 const Welcome = function(props){
-    return(
-        <div className={classes.welcomeContainer}>
-            <div className={classes.welcomeTextContainer}>
-                <p>Welcome to MySpace</p>
-                <p>MySpace consists of my posts</p>
-            </div>
-            <hr className={classes.lineBreak}></hr>
-            <div className={classes.welcomeInfo}>
-                <p className={classes.welcomeContent}>Sign Up or Login to use MySpace and you can post your content too</p>
-                <div className={classes.welcomeBtnContainer}>
-                    <button>Sign Up</button>
-                    <button>Login</button>
+    const authenticated = useSelector((state)=>state.auth.isLoggedIn);
+    
+        return(
+            <div className={classes.welcomeContainer}>
+                <div className={classes.welcomeTextContainer}>
+                    {!authenticated && <Fragment>
+                                            <p>Welcome to MySpace</p>
+                                            <p>MySpace consists of my posts</p>     
+                                        </Fragment>}
+                    {authenticated &&   <Fragment>
+                                            <p>Hi Himanshu, Welcome to MySpace</p>
+                                            <p>MySpace consists of my posts</p>
+                                        </Fragment>}
+                </div>
+                <hr className={classes.lineBreak}></hr>
+                <div className={classes.welcomeInfo}>
+                    {!authenticated && <p className={classes.welcomeContent}>Sign Up or Login to use MySpace and you can post your content too</p>}
+                    {authenticated && <p className={classes.welcomeContent}>Go to Dashboard to create your Posts</p>}
+                    <div className={classes.welcomeBtnContainer}>
+                        { !authenticated && <Fragment>
+                                                <button><Link to="/signup">Sign Up</Link></button>
+                                                <button><Link to="/login">Login</Link></button>
+                                            </Fragment>
+                        }
+                        { authenticated && <button><Link to="/dashboard">Dashboard</Link></button>}
+                    </div>
                 </div>
             </div>
-        </div>
-    )
+        )
 }
 
 export default Welcome;

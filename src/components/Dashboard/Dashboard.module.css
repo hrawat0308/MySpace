@@ -40,13 +40,13 @@
     text-align: center;
 }
 
-.welcomeContent{
+/* .welcomeContent{
     padding-top: 2%;
     color: #A5C9CA;
     font-size: 1.1rem;
     padding-left: 5px;
     padding-right: 5px;
-}
+} */
 
 .welcomeBtnContainer{
     margin-top: 2%;
@@ -66,6 +66,7 @@
     color: #2C3333;
     font-weight: 700;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    width: 150px;
 }
 
 @media screen and (max-width: 620px){
