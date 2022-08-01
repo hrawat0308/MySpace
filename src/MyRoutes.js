@@ -8,6 +8,7 @@ import Welcome from "./components/WelcomeContainer/Welcome";
 import Dashboard from './components/Dashboard/Dashboard';
 import Login from './components/Login/Login';
 import Signup from './components/Signup/Signup';
+import Myposts from './components/Myposts/Myposts';
 
 
 const MyRoutes = function(){
@@ -25,14 +26,13 @@ const MyRoutes = function(){
         <Route path='/dashboard' element={<Fragment>
                                     <Header />
                                     <Dashboard />
-                                    <h1>My Posts</h1>
+                                    <Myposts />
                                     <Footer />
                                   </Fragment>
         } />
         <Route path='/myposts' element={<Fragment>
                                     <Header />
-                                    <h1>Here are all your Posts</h1>
-                                    <h1>My Posts</h1>
+                                    <Myposts />
                                     <Footer />
                                   </Fragment>
         } />

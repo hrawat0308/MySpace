@@ -28,3 +28,9 @@ header{
 .navlink{
     color: #E7F6F2;
 }
+
+.linkIsActive{
+    background-color: #395B64;
+    padding: 15px;
+    border-radius: 5px;
+}
