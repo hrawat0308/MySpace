@@ -1,7 +1,7 @@
 import classes from './Header.module.css';
 const Header = function(props){
     return(
-        <div className={classes.headerContainer}>
+        <header>
             <div className={classes.headerContentContainer}>
                 <div className={classes.logo}>MySpace</div>
                 <div className={classes.navlinksContainer}>
@@ -12,7 +12,7 @@ const Header = function(props){
                     <div className={classes.navlink}>Logout</div>
                 </div>
             </div>
-        </div>
+        </header>
     )
 }
 
