@@ -9,7 +9,8 @@ import Dashboard from './components/Dashboard/Dashboard';
 import Login from './components/Login/Login';
 import Signup from './components/Signup/Signup';
 import Myposts from './components/Myposts/Myposts';
-
+import Createpost from './components/CreatePost/Createpost';
+import PostContent from './components/PostContent/PostContent';
 
 const MyRoutes = function(){
     const authenticated = useSelector((state)=>state.auth.isLoggedIn);
@@ -33,6 +34,18 @@ const MyRoutes = function(){
         <Route path='/myposts' element={<Fragment>
                                     <Header />
                                     <Myposts />
+                                    <Footer />
+                                  </Fragment>
+        } />
+        <Route path='/createPost' element={<Fragment>
+                                    <Header />
+                                    <Createpost />
+                                    <Footer />
+                                  </Fragment>
+        } />
+        <Route path='/post/:postId' element={<Fragment>
+                                    <Header />
+                                    <PostContent />
                                     <Footer />
                                   </Fragment>
         } />
@@ -62,6 +75,12 @@ const MyRoutes = function(){
                                         <Footer />    
                                     </Fragment>} 
         />
+        <Route path='/post/:postId' element={<Fragment>
+                                    <Header />
+                                    <PostContent />
+                                    <Footer />
+                                  </Fragment>
+        } />
         <Route path="/*" element={<Navigate to="/" />} />
       </Routes>
     );

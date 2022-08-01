@@ -1,0 +1,76 @@
+.signupContainer{
+    margin-top: 3%;
+    width: 40%;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #395B64;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    margin-bottom: 4%;
+}
+
+.signup{
+    padding : 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.formContainer{
+    padding: 30px;
+}
+
+.signupSubmitBtn{
+    width : 200px;
+    height : 30px;
+    margin-top: 2rem;
+    background-color: #A5C9CA;
+    border-radius: 5px;
+    color: #E7F6F2;
+    font-weight: bold;
+    border : none;
+    cursor: pointer;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.alreadyRegisteredContainer{
+    margin-top: 2%;
+    text-align: center;
+    color: #E7F6F2;
+}
+
+.alreadyRegisteredContainer  a{
+    color: #A5C9CA;
+    font-weight: 500;
+}
+
+.ruler{
+    height: 1px;
+    background-color: #E7F6F2;
+    border-radius: 5px;
+    margin-top: 3%;
+}
+
+@media screen and (max-width : 800px) {
+    .signupContainer{
+        width: 60%;
+    }
+}
+
+@media screen and (max-width : 600px) {
+    .signupContainer{
+        width: 80%;
+    }
+}
+
+@media screen and (max-width : 400px) {
+    .signupContainer{
+        width: 90%;
+    }
+}
+
+.invalidInput{
+    margin-top: 3px;
+    color : #F05454;
+    font-weight: bold;
+    font-size: 1rem;
+}

@@ -1,0 +1,56 @@
+.createPostContainer{
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 3%;
+    background-color: #A5C9CA;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.inputTitleContainer{
+    width: 100%;
+}
+
+.inputTitle{
+    width: 90%;
+    margin-top: 5px;
+    height: 30px;
+    font-size: 1.1rem;
+    color: #2C3333;
+    outline: none;
+    border: none;
+    margin-left: 2%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    margin-bottom: 2%;
+}
+
+label{
+    font-size: 1.3rem;
+    font-weight: 500;
+    color: #395B64;
+    margin-left: 2%;
+}
+
+.editor{
+    width: 90%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    margin-left: 2%;
+    margin-bottom: 2%;
+    background-color: #E7F6F2;
+}
+
+
+.submitPostbtn{
+    height: 50px;
+    margin-left: 2%;
+    cursor: pointer;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    background-color: #395B64;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #A5C9CA;
+    border : none;
+    border-radius: 5px;
+}

@@ -1,4 +1,6 @@
 import classes from './Dashboard.module.css';
+import {Link} from 'react-router-dom';
+
 const Dashboard = function(){
     return(
         <div className={classes.welcomeContainer}>
@@ -9,7 +11,7 @@ const Dashboard = function(){
             <hr className={classes.lineBreak}></hr>
             <div className={classes.welcomeInfo}>
                 <div className={classes.welcomeBtnContainer}>
-                    <button>Create Post</button>
+                    <button><Link to="/createPost">Create Post</Link></button>
                 </div>
             </div>
         </div>

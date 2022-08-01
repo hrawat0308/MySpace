@@ -10,9 +10,6 @@ const PostContainer = function(){
             <Post />
             <Post />
             <Post />
-            <Post />
-            <Post />
-            <Post />
         </div>
     );
 }
