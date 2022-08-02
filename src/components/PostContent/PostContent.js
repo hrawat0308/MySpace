@@ -1,11 +1,27 @@
 import { Fragment } from 'react';
 import { useParams } from 'react-router-dom';
-const Post = function(){
+import classes from './PostContent.module.css';
+import parse from "html-react-parser";
+
+
+const Post = function({AllPostsArray}){
     const { postId } = useParams();
+    let thisPost = AllPostsArray.filter((post)=>post.id.toString() === postId);
+
+    thisPost = thisPost[0];
+
     return(
         <Fragment>
-        <h1>Post </h1>
-        <h2>Post ID : {postId} </h2>
+            <div className={classes.PostHeader}>{thisPost.title}</div>
+            <div className={classes.postDetails}>
+                <div>Author </div>
+                <div>Posted on : {thisPost.postDate}</div>
+            </div>
+            <div className={classes.PostContentContainer}>
+                <div className={classes.PostContent}>
+                    {parse(thisPost.content)}
+                </div>
+            </div>
         </Fragment>
     )
 }

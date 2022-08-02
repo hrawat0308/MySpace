@@ -1,5 +1,5 @@
-import { Fragment } from 'react';
-import { useSelector } from 'react-redux';
+import { Fragment, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { Route, Routes, Navigate } from 'react-router-dom';
 import Footer from "./components/Footer/Footer";
 import Header from "./components/Header/Header";
@@ -11,29 +11,63 @@ import Signup from './components/Signup/Signup';
 import Myposts from './components/Myposts/Myposts';
 import Createpost from './components/CreatePost/Createpost';
 import PostContent from './components/PostContent/PostContent';
+import { LoadingSliceActions, ErrorSliceActions, AllpostsActions } from './store';
+
 
 const MyRoutes = function(){
-    const authenticated = useSelector((state)=>state.auth.isLoggedIn);
+    const authenticated = useSelector((state)=>state.auth.isLoggedIn);  
+    const error = useSelector((state)=>state.error.error);
+    const isLoading = useSelector((state)=>state.loading.loading);
+    const dispatch = useDispatch();
+    let AllPostsArray = useSelector((state)=>state.allposts.AllPostsArray);
+
+    useEffect(()=>{
+      const fetchPosts = async() => {
+        dispatch(LoadingSliceActions.setLoading({value : true}));
+        const response = await fetch(`https://fir-c26bc-default-rtdb.firebaseio.com/posts.json`);
+          if(!response.ok){
+            throw new Error("Error in fetching Posts!! Please try Again.");
+          }
+        const responseData = await response.json();
+        const tempArray = [];
+        for(const post in responseData){
+          tempArray.push(responseData[post]);
+        }
+        dispatch(AllpostsActions.setAllPosts({ value : tempArray}));
+        dispatch(LoadingSliceActions.setLoading({value : false}));
+      }
+
+      try{
+        fetchPosts();
+      }
+      catch(err){
+          dispatch(LoadingSliceActions.setLoading({value : false}));
+          dispatch(ErrorSliceActions.setError({value : err.message}));
+      }
+
+    },[dispatch]);
+
+
     if(authenticated){
         return(
         <Routes>
         <Route path='/' element={<Fragment>
                                     <Header />
                                     <Welcome />
-                                    <PostContainer />
+                                    <PostContainer isLoading={isLoading} error={error} AllPostsArray={AllPostsArray} />
                                     <Footer />
                                   </Fragment>
         } />
         <Route path='/dashboard' element={<Fragment>
                                     <Header />
                                     <Dashboard />
-                                    <Myposts />
+                                    <Myposts AllPostsArray={AllPostsArray} />
                                     <Footer />
                                   </Fragment>
         } />
         <Route path='/myposts' element={<Fragment>
                                     <Header />
-                                    <Myposts />
+                                    <Myposts AllPostsArray={AllPostsArray} />
                                     <Footer />
                                   </Fragment>
         } />
@@ -45,11 +79,12 @@ const MyRoutes = function(){
         } />
         <Route path='/post/:postId' element={<Fragment>
                                     <Header />
-                                    <PostContent />
+                                    <PostContent AllPostsArray={AllPostsArray} />
                                     <Footer />
                                   </Fragment>
         } />
         <Route path="/*" element={<Navigate to="/" />} />
+        
         </Routes>
     );
   }
@@ -59,7 +94,7 @@ const MyRoutes = function(){
         <Route path='/' element={<Fragment>
                                     <Header />
                                     <Welcome />
-                                    <PostContainer />
+                                    <PostContainer isLoading={isLoading} error={error} AllPostsArray={AllPostsArray} />
                                     <Footer />
                                   </Fragment>
         } />

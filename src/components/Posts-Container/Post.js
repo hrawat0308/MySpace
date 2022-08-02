@@ -1,16 +1,22 @@
 import classes from './Post.module.css';
-const Post = function(){
+import {Link} from 'react-router-dom';
+
+const Post = function(props){
+    const navigateTo = `/post/${props.id}`;
+    let desc = props.description.padEnd(150, ' _');
+    desc = desc.substring(0,150);
+    
     return(
         <div className={classes.Post}>
             <div className={classes.PostTitle}>
-                <p>Post Title</p>
+                <p>{props.title}</p>
             </div>
             <div className={classes.PostContent}>
-                <p>This is Post Content......read more</p>
-                <button>Read Full Post</button>
+                <p>{desc} <span className={classes.readMore}>read more</span></p>
+                <button><Link to={navigateTo}>Read Full Post</Link></button>
             </div>
             <div className={classes.PostFooter}>
-                <p>Poster on: Saturday, June 11, 2022</p>
+                <p>Posted on : {props.postDate}</p>
             </div>
         </div>
     )

@@ -3,6 +3,9 @@ import AuthSlice from "./AuthenticationSlice";
 import TextEditorSlice from "./EditorSlice";
 import LoginSlice from "./LoginSlice";
 import SignupSlice from "./SignupSlice";
+import AllpostsSlice from "./Allposts";
+import ErrorSlice from "./ErrorSlice";
+import LoadingSlice from "./LoadingSlice";
 
 //This is the central Store
 const Store = configureStore({
@@ -11,6 +14,9 @@ const Store = configureStore({
         textEditor : TextEditorSlice.reducer,
         login : LoginSlice.reducer,
         signup : SignupSlice.reducer,
+        allposts : AllpostsSlice.reducer,
+        error : ErrorSlice.reducer,
+        loading : LoadingSlice.reducer,
     }
 });
 
@@ -21,3 +27,6 @@ export const AuthActions = AuthSlice.actions;
 export const TextEditorActions = TextEditorSlice.actions;
 export const LoginActions = LoginSlice.actions;
 export const SignupActions = SignupSlice.actions;
+export const AllpostsActions = AllpostsSlice.actions;
+export const ErrorSliceActions = ErrorSlice.actions;
+export const LoadingSliceActions = LoadingSlice.actions;
