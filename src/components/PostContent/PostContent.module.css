@@ -20,8 +20,44 @@
     margin-bottom: 1%;
     margin-left : 2.5%;
     margin-top: 1%;
+    display : flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-right: 2.5%;
+}
+
+.editDelBtn{
+    margin: 5px;
+    border: none;
+    height: 40px;
+    font-size: 1rem;
+    cursor: pointer;
+    font-weight: 500;
+    border-radius: 5px;
+    color: white;
+    padding: 10px;
+}
+
+.edit{
+    background-color: #9C9EFE;
+}
+
+.del{
+    background-color: #FF1E00;
 }
 
 .PostContent{
     width: 100%;
+}
+
+.author{
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: #2C3333;
+}
+
+.postedOn{
+    font-size: 1rem;
+    font-weight: 400;
+    color: #2C3333;
 }
