@@ -29,6 +29,11 @@ header{
     color: #E7F6F2;
 }
 
+.logout{
+    color: #E7F6F2;
+    cursor: pointer;
+}
+
 .linkIsActive{
     background-color: #395B64;
     padding: 15px;

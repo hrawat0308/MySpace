@@ -24,15 +24,16 @@ const MyRoutes = function(){
     useEffect(()=>{
       const fetchPosts = async() => {
         dispatch(LoadingSliceActions.setLoading({value : true}));
-        const response = await fetch(`https://fir-c26bc-default-rtdb.firebaseio.com/posts.json`);
+        const response = await fetch(`http://localhost:5000/posts`);
           if(!response.ok){
             throw new Error("Error in fetching Posts!! Please try Again.");
           }
         const responseData = await response.json();
-        const tempArray = [];
-        for(const post in responseData){
-          tempArray.push(responseData[post]);
-        }
+        // const tempArray = [];
+        // for(const post in responseData.usersPost){
+        //   tempArray.push(responseData[post]);
+        // }
+        const tempArray = responseData?.usersPost.map((post)=>post);
         dispatch(AllpostsActions.setAllPosts({ value : tempArray}));
         dispatch(LoadingSliceActions.setLoading({value : false}));
       }
@@ -59,7 +60,7 @@ const MyRoutes = function(){
                                   </Fragment>
         } />
         <Route path='/dashboard' element={<Fragment>
-                                    <Header />
+                                    <Header /> 
                                     <Dashboard />
                                     <Myposts AllPostsArray={AllPostsArray} />
                                     <Footer />
@@ -112,7 +113,7 @@ const MyRoutes = function(){
         />
         <Route path='/post/:postId' element={<Fragment>
                                     <Header />
-                                    <PostContent />
+                                    <PostContent AllPostsArray={AllPostsArray} />
                                     <Footer />
                                   </Fragment>
         } />

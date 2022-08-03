@@ -14,10 +14,12 @@ const Createpost = function(){
     const dispatch = useDispatch();
     const titleInputRef = useRef();
     const descriptionInputRef = useRef();
+    const token = useSelector((state)=>state.auth.token);
+    const UserId = useSelector((state)=>state.auth.userId);
+    const author = useSelector((state)=>state.auth.author);
     const textValue = useSelector((state)=>state.textEditor.textValue);
     const error = useSelector((state)=>state.error.error);
     const isLoading = useSelector((state)=>state.loading.loading);
-    // const AllPostsArray = useSelector((state)=>state.allposts.AllPostsArray);
 
     const onSubmitPostHandler = async(event)=>{
         event.preventDefault();
@@ -27,27 +29,35 @@ const Createpost = function(){
             }
             else{
                 const post = {
-                    id : Math.random()*10,
                     title : titleInputRef.current.value,
                     content : textValue,
                     description : descriptionInputRef.current.value,
                     postDate : new Date().toDateString(),
+                    user : UserId,
+                    author : author,
                 }
-    
                 try{
                     dispatch(LoadingSliceActions.setLoading({value : true}));
-                    const response = await fetch(`https://fir-c26bc-default-rtdb.firebaseio.com/posts.json`,{
+                    const response = await fetch(`http://localhost:5000/${UserId}/add-post`,{
                         method : 'POST',
                         headers : {
                             'Content-Type': 'application/json',
+                            Authorization : 'Bearer ' + token,
                         },
-                        body : JSON.stringify(post)
+                        body : JSON.stringify({
+                            title : post.title,
+                            content : post.content,
+                            description : post.description,
+                            postDate : post.postDate,
+                            user : post.user,
+                            author : post.author,
+                        })
                     });
                     const responseData = await response.json();
                     if(!response.ok){
                         throw new Error(responseData.message);
                     }
-                    console.log(post)
+                    post._id = responseData._id;
                     dispatch(AllpostsActions.addPost({value : post }));
                     dispatch(LoadingSliceActions.setLoading({value : false}));
                     dispatch(TextEditorActions.setTextValue({ value : "" }));

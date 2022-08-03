@@ -3,7 +3,12 @@ import classes from './Signup.module.css';
 import {Link} from 'react-router-dom';
 import { Fragment } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { SignupActions } from "../../store";
+import { LoadingSliceActions, SignupActions } from "../../store";
+import { AuthActions } from "../../store";
+import { ErrorSliceActions } from "../../store";
+import ErrorModal from '../Modal/ErrorModal';
+import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
+
 
 const Signup = function(){
     const dispatch =  useDispatch();
@@ -16,10 +21,53 @@ const Signup = function(){
     const enteredPassword = useSelector((state)=> state.signup.enteredPassword);
     const passwordIsTouched = useSelector((state)=> state.signup.passwordIsTouched);
     const passwordIsValid = useSelector((state)=> state.signup.passwordIsValid);
+    const error = useSelector((state)=>state.error.error);
+    const isLoading = useSelector((state)=>state.loading.loading);
 
-    const onSignupHandler = (event) => {
+    const onSignupHandler = async(event) => {
         event.preventDefault();
-        alert("Registered");
+        dispatch(SignupActions.setEmailIsTouched({ value : true }));
+        dispatch(SignupActions.setPasswordIsTouched({ value : true }));
+        dispatch(SignupActions.setNameIsTouched({ value : true }));
+    
+        if(enteredPassword.trim().length >= 6 ){
+            dispatch(SignupActions.setPasswordIsValid({ value : true}));
+        }
+        if(enteredEmail.trim().includes('@')){
+            dispatch(SignupActions.setEmailIsValid({ value : true}));
+        }
+        if(enteredName.trim() !== ""){
+            dispatch(SignupActions.setNameIsValid({ value : true}));
+        }
+
+        try{
+            dispatch(LoadingSliceActions.setLoading({value : true}));
+            const response = await fetch('http://localhost:5000/signup',{
+                method: 'POST',
+                headers : {
+                    'Content-Type': 'application/json'
+                },
+                body : JSON.stringify({
+                    name : enteredName,
+                    email : enteredEmail,
+                    password: enteredPassword,
+                })
+            });
+            const responseData = await response.json();
+            if(!response.ok){
+                throw new Error(responseData.message);
+            }
+            dispatch(LoadingSliceActions.setLoading({value : false}));
+            dispatch(SignupActions.setEnteredName({value : ""}));
+            dispatch(SignupActions.setEnteredEmail({value : ""}));
+            dispatch(SignupActions.setEnteredPassword({value:""}));
+            dispatch(AuthActions.login({userId : responseData.user, token : responseData.token, author : responseData.author}));
+        }
+        catch(err){
+            console.log(err);
+            dispatch(LoadingSliceActions.setLoading({ value : false}));
+            dispatch(ErrorSliceActions.setError({value : err.message || "Something Went Wrong!!"}));
+        }
     }
 
     const nameInputOnchange = (event) => {
@@ -72,11 +120,15 @@ const Signup = function(){
         }
     }
 
+    const errorHandler = () => {
+        dispatch(ErrorSliceActions.setError({value : null}));
+    }
+
     return(
         <Fragment>
-        {/* { !!error && <ErrorModal error={error} onClear={errorHandler} />}     */}
+        { !!error && <ErrorModal error={error} onClear={errorHandler} />}    
         <div className={classes.signupContainer}>
-            {/* { isLoading && <LoadingSpinner asOverlay />} */}
+            { isLoading && <LoadingSpinner asOverlay />}
             <div className={classes.formContainer}>
             <form className={classes.signup} onSubmit={onSignupHandler}>
                 <Input  label="Name" 

@@ -6,7 +6,7 @@ import { Fragment } from 'react';
 
 const Welcome = function(props){
     const authenticated = useSelector((state)=>state.auth.isLoggedIn);
-    
+    const author = useSelector((state)=>state.auth.author);
         return(
             <div className={classes.welcomeContainer}>
                 <div className={classes.welcomeTextContainer}>
@@ -15,7 +15,7 @@ const Welcome = function(props){
                                             <p>MySpace consists of my posts</p>     
                                         </Fragment>}
                     {authenticated &&   <Fragment>
-                                            <p>Hi Himanshu, Welcome to MySpace</p>
+                                            <p>Hi {author[0].toUpperCase()+author.substring(1)}, Welcome to MySpace</p>
                                             <p>MySpace consists of my posts</p>
                                         </Fragment>}
                 </div>

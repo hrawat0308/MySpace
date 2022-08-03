@@ -1,9 +1,10 @@
 import MypostsContainer from "./MypostsContainer";
+import {useSelector} from 'react-redux';
 
 const Myposts = function({AllPostsArray}){
-    const UserId = "rawat";
+    const UserId = useSelector((state)=>state.auth.userId);
     const MyPostsArray = AllPostsArray?.filter((item)=>{
-        return item.uid === UserId; 
+        return item.user === UserId; 
     });
     return(
         <MypostsContainer MyPostsArray={MyPostsArray} />

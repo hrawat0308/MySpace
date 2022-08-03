@@ -11,8 +11,7 @@ const PostContainer = function({ AllPostsArray, error, isLoading }){
     const errorHandler = () => {
         dispatch(ErrorSliceActions.setError({value : null}));
     }
-
-    if(AllPostsArray?.length === 0){
+    if(AllPostsArray?.length === 0 ){
         return(
             <Fragment>
             { !!error && <ErrorModal error={error} onClear={errorHandler} />}
@@ -32,8 +31,8 @@ const PostContainer = function({ AllPostsArray, error, isLoading }){
                 {
                     AllPostsArray.map((post)=>{
                         return(
-                            <Post   key={post.id}
-                                    id={post.id}
+                            <Post   key={post._id}
+                                    id={post._id}
                                     title={post.title}
                                     content={post.content}
                                     postDate={post.postDate}

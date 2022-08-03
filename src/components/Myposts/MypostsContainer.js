@@ -2,12 +2,13 @@ import Post from '../Posts-Container/Post';
 import classes from './MypostsContainer.module.css';
 
 const MypostsContainer = function({ MyPostsArray }){
+    
     if(MyPostsArray?.length === 0){
         return(
             <div className={classes.noMyposts}>
                 <p>No Posts!!</p>
             </div>   
-        );
+        ); 
     }
     else{
         return(
@@ -15,8 +16,8 @@ const MypostsContainer = function({ MyPostsArray }){
                 {
                     MyPostsArray.map((post)=>{
                         return(
-                            <Post   key={post.id}
-                                    id={post.id}
+                            <Post   key={post._id}
+                                    id={post._id}
                                     title={post.title}
                                     content={post.content}
                                     postDate={post.postDate}

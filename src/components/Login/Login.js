@@ -3,7 +3,11 @@ import { Link } from 'react-router-dom';
 import { Fragment } from 'react';
 import Input from '../Input/Input';
 import { useDispatch, useSelector } from 'react-redux';
-import { LoginActions } from '../../store';
+import { LoadingSliceActions, LoginActions } from '../../store';
+import { AuthActions } from '../../store';
+import { ErrorSliceActions } from '../../store';
+import ErrorModal from '../Modal/ErrorModal';
+import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
 
 const Login = function(){
     const dispatch = useDispatch();
@@ -13,10 +17,54 @@ const Login = function(){
     const emailIsValid = useSelector((state)=>state.login.emailIsValid);
     const passwordIsTouched = useSelector((state)=>state.login.passwordIsTouched);
     const passwordIsValid = useSelector((state)=>state.login.passwordIsValid);
+    const error = useSelector((state)=>state.error.error);
+    const isLoading = useSelector((state)=>state.loading.loading);
 
-    const onLoginHandler = (event)=>{
+    const onLoginHandler = async(event)=>{
         event.preventDefault();
-        alert("Login");
+        dispatch(LoginActions.setEmailIsTouched({value : true}));
+        dispatch(LoginActions.setPasswordIsTouched({value : true}));
+        if(enteredPassword.trim().length >= 6 ){
+            dispatch(LoginActions.setPasswordIsValid({value : true}));
+        }
+        else{
+            dispatch(LoginActions.setPasswordIsValid({ value : false}));
+            return;
+        }
+        if(enteredEmail.trim().includes('@')){
+            dispatch(LoginActions.setEmailIsValid({value : true}));
+        }
+        else{
+            dispatch(LoginActions.setEmailIsValid({value : false}));
+            return;
+        }
+        
+        try{
+            dispatch(LoadingSliceActions.setLoading({value : true}));
+            const response = await fetch('http://localhost:5000/login',{
+                method: 'POST',
+                headers : {
+                    'Content-Type': 'application/json',
+                },
+                body : JSON.stringify({
+                    email : enteredEmail,
+                    password: enteredPassword,
+                })
+            });
+            const responseData = await response.json();
+            if(!response.ok){
+                throw new Error(responseData.message);
+            }
+            dispatch(LoadingSliceActions.setLoading({value : false}));
+            dispatch(LoginActions.setEnteredEmail({value : ""}));
+            dispatch(LoginActions.setEnteredPassword({value : ""}));
+            dispatch(AuthActions.login({userId : responseData.user, token : responseData.token, author : responseData.author}));
+        }
+        catch(err){
+            console.log(err);
+            dispatch(LoadingSliceActions.setLoading({value : false}));
+            dispatch(ErrorSliceActions.setError({value : err.message || "Something Went Wrong!!"}));
+        }
     }
 
     const emailInputOnchange = (event) => {
@@ -52,11 +100,15 @@ const Login = function(){
         }
     }
 
+    const errorHandler = () => {
+        dispatch(ErrorSliceActions.setError({value : null}));
+    }
+
     return(
         <Fragment>
-        {/* { !!error && <ErrorModal error={error} onClear={errorHandler} />} */}
+        { !!error && <ErrorModal error={error} onClear={errorHandler} />}
         <div className={classes.loginContainer}>
-            {/* { isLoading && <LoadingSpinner asOverlay />} */}
+            { isLoading && <LoadingSpinner asOverlay />}
             <div className={classes.formContainer}>
             <form className={classes.login} onSubmit={onLoginHandler}>
                 <Input  label="Email" 

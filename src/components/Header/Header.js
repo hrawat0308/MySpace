@@ -1,10 +1,16 @@
 import classes from './Header.module.css';
-import { useSelector } from 'react-redux/es/exports';
+import { useDispatch, useSelector } from 'react-redux/es/exports';
 import { NavLink, Link } from 'react-router-dom';
 import { Fragment } from 'react';
+import { AuthActions } from '../../store';
 
 const Header = function(props){
+    const dispatch = useDispatch();
     const authenticated = useSelector((state)=>state.auth.isLoggedIn);
+    const onLogoutHandler = () => {
+        dispatch(AuthActions.logout());
+    }
+
     return(
         <header>
             <div className={classes.headerContentContainer}>
@@ -31,7 +37,7 @@ const Header = function(props){
                             <div className={classes.navlink}>
                                 <NavLink to="/dashboard" className={({ isActive }) => isActive ? classes.linkIsActive : "" }>Dashboard</NavLink>
                             </div>
-                            <div className={classes.navlink}>Logout</div>
+                            <div className={classes.logout} onClick={onLogoutHandler}>Logout</div>
                         </Fragment>
                     }
                    
