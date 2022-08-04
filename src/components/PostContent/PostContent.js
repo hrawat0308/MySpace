@@ -29,7 +29,7 @@ const Post = function({AllPostsArray}){
         dispatch(ErrorSliceActions.setErrorDel({value : null}));
         try{
             dispatch(LoadingSliceActions.setLoading({value : true}));
-            const response = await fetch(`http://localhost:5000/${postId}/delete-post`,{
+            const response = await fetch(process.env.BACKEND_URL+`/${postId}/delete-post`,{
                 method : 'DELETE',
                 headers : {
                     Authorization : 'Bearer ' + token,

@@ -1,5 +1,5 @@
 import classes from './EditPost.module.css';
-import { Fragment, useRef, useState } from 'react'; 
+import { Fragment, useState } from 'react'; 
 import ErrorModal from '../Modal/ErrorModal';
 import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
 import TextEditor from '../CreatePost/TextEditor';
@@ -39,7 +39,7 @@ const EditPost = function({data}){
                 }
                 try{
                     dispatch(LoadingSliceActions.setLoading({value : true}));
-                    const response = await fetch(`http://localhost:5000/${postId}/edit-post`,{
+                    const response = await fetch(process.env.BACKEND_URL+`/${postId}/edit-post`,{
                         method : 'PATCH',
                         headers : {
                             'Content-Type': 'application/json',

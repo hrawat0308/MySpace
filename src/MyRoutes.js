@@ -26,15 +26,11 @@ const MyRoutes = function(){
     useEffect(()=>{
       const fetchPosts = async() => {
         dispatch(LoadingSliceActions.setLoading({value : true}));
-        const response = await fetch(`http://localhost:5000/posts`);
+        const response = await fetch(process.env.BACKEND_URL + '/posts');
           if(!response.ok){
             throw new Error("Error in fetching Posts!! Please try Again.");
           }
         const responseData = await response.json();
-        // const tempArray = [];
-        // for(const post in responseData.usersPost){
-        //   tempArray.push(responseData[post]);
-        // }
         const tempArray = responseData?.usersPost.map((post)=>post);
         dispatch(AllpostsActions.setAllPosts({ value : tempArray}));
         dispatch(LoadingSliceActions.setLoading({value : false}));

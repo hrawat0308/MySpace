@@ -42,7 +42,7 @@ const Signup = function(){
 
         try{
             dispatch(LoadingSliceActions.setLoading({value : true}));
-            const response = await fetch('http://localhost:5000/signup',{
+            const response = await fetch(process.env.BACKEND_URL+'/signup',{
                 method: 'POST',
                 headers : {
                     'Content-Type': 'application/json'
