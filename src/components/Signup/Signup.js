@@ -42,7 +42,7 @@ const Signup = function(){
 
         try{
             dispatch(LoadingSliceActions.setLoading({value : true}));
-            const response = await fetch(process.env.BACKEND_URL+'/signup',{
+            const response = await fetch('https://my-space-mern.herokuapp.com'+'/signup',{
                 method: 'POST',
                 headers : {
                     'Content-Type': 'application/json'

@@ -26,7 +26,7 @@ const MyRoutes = function(){
     useEffect(()=>{
       const fetchPosts = async() => {
         dispatch(LoadingSliceActions.setLoading({value : true}));
-        const response = await fetch(process.env.BACKEND_URL + '/posts');
+        const response = await fetch('https://my-space-mern.herokuapp.com/posts');
           if(!response.ok){
             throw new Error("Error in fetching Posts!! Please try Again.");
           }

@@ -38,7 +38,7 @@ const Createpost = function(){
                 }
                 try{
                     dispatch(LoadingSliceActions.setLoading({value : true}));
-                    const response = await fetch(process.env.BACKEND_URL+`/${UserId}/add-post`,{
+                    const response = await fetch('https://my-space-mern.herokuapp.com'+`/${UserId}/add-post`,{
                         method : 'POST',
                         headers : {
                             'Content-Type': 'application/json',
