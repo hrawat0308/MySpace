@@ -53,7 +53,12 @@ const Post = function({AllPostsArray}){
     }
 
     const postEditHandler = () => {
-
+        navigate(`/edit/${postId}`, {state : {
+                                                title : thisPost?.title,
+                                                description : thisPost?.description,
+                                                content : thisPost?.content,
+                                            }
+                                    });
     }
 
     const onPostDelete = () => {
@@ -62,6 +67,7 @@ const Post = function({AllPostsArray}){
 
     const errorHandler = () => {
         dispatch(ErrorSliceActions.setError({value : null}));
+        dispatch(ErrorSliceActions.setErrorDel({value : null}));
     }
 
     return(

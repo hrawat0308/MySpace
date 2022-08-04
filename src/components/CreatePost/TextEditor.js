@@ -5,7 +5,6 @@ import { useDispatch } from 'react-redux';
 
 const TextEditor = function(props){
 
-    // const textValue = useSelector((state)=>state.textEditor.textValue);
     const editor = useRef(null);
     const dispatch = useDispatch();
     const onTextChangeHandler = (content) => {
@@ -15,7 +14,7 @@ const TextEditor = function(props){
     return(
         <JoditEditor    
             ref={editor}
-            // value={props.initialValue}
+            value={props.initialValue}
             onChange={ onTextChangeHandler}
         />
     );

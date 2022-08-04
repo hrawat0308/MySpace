@@ -12,6 +12,8 @@ import Myposts from './components/Myposts/Myposts';
 import Createpost from './components/CreatePost/Createpost';
 import PostContent from './components/PostContent/PostContent';
 import { LoadingSliceActions, ErrorSliceActions, AllpostsActions } from './store';
+import EditPost from './components/EditPost/EditPost';
+import { useLocation } from 'react-router-dom';
 
 
 const MyRoutes = function(){
@@ -20,7 +22,7 @@ const MyRoutes = function(){
     const isLoading = useSelector((state)=>state.loading.loading);
     const dispatch = useDispatch();
     let AllPostsArray = useSelector((state)=>state.allposts.AllPostsArray);
-
+    const location = useLocation();
     useEffect(()=>{
       const fetchPosts = async() => {
         dispatch(LoadingSliceActions.setLoading({value : true}));
@@ -81,6 +83,12 @@ const MyRoutes = function(){
         <Route path='/post/:postId' element={<Fragment>
                                     <Header />
                                     <PostContent AllPostsArray={AllPostsArray} />
+                                    <Footer />
+                                  </Fragment>
+        } />
+        <Route path='/edit/:postId' element={<Fragment>
+                                    <Header />
+                                    <EditPost data={location.state}/>
                                     <Footer />
                                   </Fragment>
         } />

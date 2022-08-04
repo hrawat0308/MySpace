@@ -25,7 +25,8 @@
   /* padding: 1rem 0.5rem; */
   padding-top : 1rem;
   padding-bottom: 1rem;
-  background: #D61C4E;
+  /* background: #D61C4E; */
+  background: #950101;
   color: white;
 }
 
@@ -35,7 +36,8 @@
 
 .modal__content {
   padding: 1rem 0.5rem;
-  color: #898AA6;
+  /* color: #898AA6; */
+  color: #950101;
   font-size: 1.2rem;
   font-weight: 500;
 }
@@ -46,7 +48,8 @@
 
 .btn{
   width: 100px;
-  background-color: #CA4E79;
+  /* background-color: #CA4E79; */
+  background-color: #950101;
   border : none;
   height: 40px;
   cursor: pointer;
