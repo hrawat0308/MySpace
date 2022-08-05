@@ -1,0 +1,59 @@
+.Post{
+    /* border: 2px black solid; */
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+}
+
+.PostTitle{
+    background-color: #A5C9CA;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    color: #395B64;
+    font-size: 1.3rem;
+    font-weight: 500;
+}
+
+.PostFooter{
+    background-color: #A5C9CA;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    color: #395B64;
+    font-size: 1rem;
+    font-weight: 400;
+}
+
+.PostContent{
+    margin-top: 3%;
+    margin-bottom: 3%;
+    margin-left: 3%;
+    width: 92%;
+}
+
+.PostTitle > p {
+    margin-left: 3%;
+}
+
+.PostFooter > p {
+    margin-left: 3%;
+}
+
+.PostContent > P {
+    padding-bottom: 20px;
+}
+
+.PostContent > button {
+    border: none;
+    background-color: #E7F6F2;
+    border-radius: 5px;
+    height: 40px;
+    font-size: 1rem;
+    cursor: pointer;
+    font-weight: 500;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
+}
+
+.readMore{
+    color: red;
+}

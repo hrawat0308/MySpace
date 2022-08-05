@@ -1,70 +1,161 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# MySpace Blogger Website
 
-## Available Scripts
+This is a blogger website name as MySpace, which is a platform where a user can create a post.
 
-In the project directory, you can run:
+This application is created using MERN stack, where the UI part is created using React and server is created using Node.js and Express. All the user data and Posts data are stored in MongoDB database.
 
-### `npm start`
+Below is the link to this website, Front-End is hosted using Netlify and the server is hosted using Heroku:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+```
+https://my-space-mern.netlify.app/
+```
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Why this project was chosen?
 
-### `npm run build`
+This web application was created to hone implementation skills. This application include complete CRUD operations i.e create, read, update, delete.
+So a post created by a user can be read by other users, it can be updated and deleted by the author of the post. 
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Moreover, there is a user Sign up and login functionality, so basic authentication functionality. All these are added to practice certain features which are available in almost every websites and Web Application.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## How this project is created?
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+This application is created using MERN stack, where UI is created using React and backend is created using Node.js and Express. The user data and post data are stored in MongoDB database.
+This complete application is created on VSCode code editor.
 
-### `npm run eject`
+Some of the third party libraries were also used in this application to implement some feature. Although this is a single page application but different components are rendered on different routes.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### React Router : 
+React Router is a fully-featured client and server-side routing library for React, a JavaScript library for building user interfaces. React Router runs anywhere React runs; on the web, on the server with node.js, and on React Native.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+The latest version of React Router i.e React Router 6 is used in this application to create all the routes.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+To install React Router 6, run : 
+```
+npm install react-router-dom@6
+```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+To know more about React Router, visit this website :
+```
+https://reactrouter.com/docs/en/v6
+```
 
-## Learn More
+### Redux : 
+Redux is a predictable state container for JavaScript apps.
+It helps you write applications that behave consistently, run in different environments (client, server, and native), and are easy to test.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Although React also allows a user to create and manage states but using Redux has more advantages.
+Managing state using Redux is much more easier and managable. 
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Using Redux, all our state are stored in one store. Centralizing your application's state and logic enables powerful capabilities like undo/redo, state persistence, and much more.
 
-### Code Splitting
+There are two ways to use Redux, either using core redux or redux/toolkit. In this application, redux/toolkit is used as it is syntactical more easier to understand and is more efficient than core redux.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+To install Redux, run : 
+```
+npm install @reduxjs/toolkit
+```
 
-### Analyzing the Bundle Size
+To use Redux in a React Application, there is another library name as 'React Redux'. It is created by the same developer team who created Redux. React Redux is maintained by the Redux team, and kept up-to-date with the latest APIs from Redux and React.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+To install React Redux, run : 
+```
+npm install react-redux
+```
 
-### Making a Progressive Web App
+To know more about Redux and React Redux, visit this website:
+```
+https://redux.js.org/
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+### Jodit React
+Jodit is awesome and usefully wysiwyg editor with filebrowser.
+This is a lightweight editor which is used to format out posts.
 
-### Advanced Configuration
+WYSIWYG : WYSIWYG, an acronym for What You See Is What You Get, is a system in which editing software allows content to be edited in a form that resembles its appearance when printed or displayed as a finished product, such as a printed document, web page, or slide presentation. 
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+To install Jodit react, run :
+```
+npm install jodit-react
+```
 
-### Deployment
+To know more about Jodit react, visit this webpage : 
+```
+https://www.npmjs.com/package/jodit-react
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+### Express
+Express.js is a back end web application framework for Node.js. Express is a node js web application framework that provides broad features for building web and mobile applications. It is used to build a single page, multipage, and hybrid web application. It's a layer built on the top of the Node js that helps manage servers and routes.
 
-### `npm run build` fails to minify
+To install Express, run : 
+```
+npm install express
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+To know more about Express, visit this website :
+```
+https://expressjs.com/en/starter/installing.html
+```
+
+
+### Mongoose 
+Mongoose is a JavaScript object-oriented programming library that creates a connection between MongoDB and the Node.js JavaScript runtime environment.
+
+Writing MongoDB connection code, validation, building schemas and other logic is a pain. Mongoose makes it easier to write the same logic in very less lines of code and is easy to understand and learn.
+
+To install Mongoose, run :
+```
+npm install mongoose
+```
+
+To know more about Mongoose, visit this website : 
+```
+https://mongoosejs.com/docs/index.html
+```
+
+### JWT - JSON WEB TOKEN
+JSON Web Token (JWT) is an open standard (RFC 7519) that defines a compact and self-contained way for securely transmitting information between parties as a JSON object. 
+
+In this application, JWT is used for user authorization. Once the user is logged in, each subsequent request will include the JWT, allowing the user to access routes, services, and resources that are permitted with that token.
+
+To install JWT, run :
+```
+npm install jsonwebtoken
+```
+
+To know more about JWT, visit these websites :
+```
+https://www.npmjs.com/package/jsonwebtoken
+
+https://jwt.io/introduction
+```
+
+### Bcrypt
+Bcrypt is a password-hashing function. It is used to encrypt user password in this application.
+
+To install bcrypt, run :
+```
+npm install bcrypt
+```
+
+To know more about usage of Bcrypt, visit :
+```
+https://www.npmjs.com/package/bcrypt
+```
+
+### Express-Validator
+Express-validator is a set of express.js middlewares that wraps validator.js validator and sanitizer functions.
+
+Express Validator makes it easier to validate the data which we get from user before we update our database.
+
+To install Express-Validator, run : 
+```
+npm install express-validator
+```
+
+To know more about Express-Validator, visit : 
+```
+https://express-validator.github.io/docs/
+```
