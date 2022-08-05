@@ -74,7 +74,7 @@ const Post = function({AllPostsArray}){
         <Fragment>
             { !!errorDel && <DeletePostModal onClear={errorHandler} onDelete={postDeleteHandler} />}
             { !!error && <ErrorModal error={error} onClear={errorHandler} />}
-            <div>
+            <div className={classes.completePostPage}>
             { isLoading && <LoadingSpinner asOverlay /> }
             <div className={classes.PostHeader}>{thisPost?.title}</div>
             <div className={classes.postDetails}>
@@ -82,7 +82,8 @@ const Post = function({AllPostsArray}){
                     <div className={classes.author}>Author : {thisPost?.author}</div>
                     <div className={classes.postedOn}>Posted on : {thisPost?.postDate}</div>
                 </div>
-                {authenticated && <div>
+                {authenticated && 
+                <div>
                     { userId === thisPost?.user && <button  className={classes.editDelBtn+ " "+classes.edit} onClick={postEditHandler} >
                             Edit Post
                         </button>
@@ -91,12 +92,12 @@ const Post = function({AllPostsArray}){
                         Delete Post
                     </button>}
                 </div>}
-            </div>
-            <div className={classes.PostContentContainer}>
-                <div className={classes.PostContent}>
-                    {parse(thisPost?.content || "")}
                 </div>
-            </div>
+                <div className={classes.PostContentContainer}>
+                    <div className={classes.PostContent}>
+                        {parse(thisPost?.content || "")}
+                    </div>
+                </div>
             </div>
         </Fragment>
     )
