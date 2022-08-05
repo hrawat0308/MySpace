@@ -16,7 +16,7 @@ import EditPost from './components/EditPost/EditPost';
 import { useLocation } from 'react-router-dom';
 
 
-const MyRoutes = function(){
+const MyRoutes = function({token}){
     const authenticated = useSelector((state)=>state.auth.isLoggedIn);  
     const error = useSelector((state)=>state.error.error);
     const isLoading = useSelector((state)=>state.loading.loading);

@@ -17,7 +17,11 @@ const Store = configureStore({
         allposts : AllpostsSlice.reducer,
         error : ErrorSlice.reducer,
         loading : LoadingSlice.reducer,
-    }
+    },
+    middleware: getDefaultMiddleware =>
+    getDefaultMiddleware({
+      serializableCheck: false,
+    }),
 });
 
 
