@@ -33,7 +33,7 @@ app.use((error,req,res,next)=>{
     res.json({ message : error.message || "An Unknown Error Occured"});
 });
 
-const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@cluster0.qjfxp.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`;
+const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@cluster0.qjfxp.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority&appName=Cluster0`;
 const clientOptions = { serverApi: { version: '1', strict: true, deprecationErrors: true } };
 async function run() {
   try {
@@ -41,9 +41,8 @@ async function run() {
     await mongoose.connect(uri, clientOptions);
     await mongoose.connection.db.admin().command({ ping: 1 });
     console.log("Pinged your deployment. You successfully connected to MongoDB!");
-  } finally {
-    // Ensures that the client will close when you finish/error
-    await mongoose.disconnect();
+  } catch(err) {
+      console.log(err);
   }
 }
 run().catch(console.dir);

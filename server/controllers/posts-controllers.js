@@ -50,7 +50,8 @@ const getAllPosts = async(req, res, next)=>{
         usersPost = await Post.find();
     }
     catch(err){
-        const error = new Error("Error fetching the task by this user!!");
+        console.log(err)
+        const error = new Error("Error fetching the tasks!!");
         error.code = 500;
         return next(error);
     }
