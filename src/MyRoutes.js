@@ -26,14 +26,14 @@ const MyRoutes = function({token}){
     useEffect(()=>{
       const fetchPosts = async() => {
         dispatch(LoadingSliceActions.setLoading({value : true}));
-        const response = await fetch('https://my-space-mern.herokuapp.com/posts');
+        const response = await fetch('https://myspace-phj7.onrender.com/posts');
+        dispatch(LoadingSliceActions.setLoading({value : false}));
           if(!response.ok){
             throw new Error("Error in fetching Posts!! Please try Again.");
           }
         const responseData = await response.json();
         const tempArray = responseData?.usersPost.map((post)=>post);
         dispatch(AllpostsActions.setAllPosts({ value : tempArray}));
-        dispatch(LoadingSliceActions.setLoading({value : false}));
       }
 
       try{

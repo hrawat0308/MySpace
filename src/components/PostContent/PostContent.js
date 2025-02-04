@@ -29,7 +29,7 @@ const Post = function({AllPostsArray}){
         dispatch(ErrorSliceActions.setErrorDel({value : null}));
         try{
             dispatch(LoadingSliceActions.setLoading({value : true}));
-            const response = await fetch('https://my-space-mern.herokuapp.com'+`/${postId}/delete-post`,{
+            const response = await fetch('https://myspace-phj7.onrender.com'+`/${postId}/delete-post`,{
                 method : 'DELETE',
                 headers : {
                     Authorization : 'Bearer ' + token,

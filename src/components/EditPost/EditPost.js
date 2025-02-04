@@ -39,7 +39,7 @@ const EditPost = function({data}){
                 }
                 try{
                     dispatch(LoadingSliceActions.setLoading({value : true}));
-                    const response = await fetch('https://my-space-mern.herokuapp.com'+`/${postId}/edit-post`,{
+                    const response = await fetch('https://myspace-phj7.onrender.com'+`/${postId}/edit-post`,{
                         method : 'PATCH',
                         headers : {
                             'Content-Type': 'application/json',

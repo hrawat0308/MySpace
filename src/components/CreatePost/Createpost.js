@@ -38,7 +38,7 @@ const Createpost = function(){
                 }
                 try{
                     dispatch(LoadingSliceActions.setLoading({value : true}));
-                    const response = await fetch('https://my-space-mern.herokuapp.com'+`/${UserId}/add-post`,{
+                    const response = await fetch('https://myspace-phj7.onrender.com'+`/${UserId}/add-post`,{
                         method : 'POST',
                         headers : {
                             'Content-Type': 'application/json',

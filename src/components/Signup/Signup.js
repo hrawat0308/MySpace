@@ -42,7 +42,7 @@ const Signup = function(){
 
         try{
             dispatch(LoadingSliceActions.setLoading({value : true}));
-            const response = await fetch('https://my-space-mern.herokuapp.com'+'/signup',{
+            const response = await fetch('https://myspace-phj7.onrender.com'+'/signup',{
                 method: 'POST',
                 headers : {
                     'Content-Type': 'application/json'
